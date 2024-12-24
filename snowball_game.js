@@ -43,7 +43,7 @@ class Target {
         this.x = x;
         this.y = y;
         this.radius = targetRadius;
-        const images = ['target1.png', 'target2.png', 'target3.png']; // Array of image paths
+        const images = ['images/target1.png', 'images/target2.png', 'images/target3.png']; // Array of image paths
         this.image = new Image();
         this.image.src = images[Math.floor(Math.random() * images.length)];
     }
