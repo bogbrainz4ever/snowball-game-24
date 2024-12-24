@@ -53,6 +53,37 @@ class Target {
     }
 }
 
+// Add festive background animation
+function drawSnowflakes() {
+    const snowflakes = Array.from({ length: 100 }, () => ({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        radius: Math.random() * 3 + 1,
+        speed: Math.random() * 1 + 0.5,
+    }));
+
+    function updateSnowflakes() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        snowflakes.forEach(snowflake => {
+            snowflake.y += snowflake.speed;
+            if (snowflake.y > canvas.height) {
+                snowflake.y = 0;
+                snowflake.x = Math.random() * canvas.width;
+            }
+            ctx.beginPath();
+            ctx.arc(snowflake.x, snowflake.y, snowflake.radius, 0, Math.PI * 2);
+            ctx.fillStyle = 'white';
+            ctx.fill();
+            ctx.closePath();
+        });
+    }
+
+    setInterval(updateSnowflakes, 30);
+}
+
+drawSnowflakes();
+
 // Spawn a random target
 function spawnTarget() {
     const x = Math.random() * (canvas.width - 2 * targetRadius) + targetRadius;
