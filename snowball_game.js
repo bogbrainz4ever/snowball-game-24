@@ -43,14 +43,19 @@ class Target {
         this.x = x;
         this.y = y;
         this.radius = targetRadius;
+        const images = ['target1.png', 'target2.png', 'target3.png']; // Array of image paths
+        this.image = new Image();
+        this.image.src = images[Math.floor(Math.random() * images.length)];
     }
 
     draw() {
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-        ctx.fillStyle = 'red';
-        ctx.fill();
-        ctx.closePath();
+        ctx.drawImage(
+            this.image,
+            this.x - this.radius, // Center the image
+            this.y - this.radius, // Center the image
+            this.radius * 2,      // Set width
+            this.radius * 2       // Set height
+        );
     }
 }
 
